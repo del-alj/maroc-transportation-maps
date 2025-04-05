@@ -1,0 +1,21 @@
+/* Metro line animation */
+.metro-line {
+    stroke-width: 6;
+    stroke-linecap: round;
+    animation: pulse 2s infinite;
+  }
+  
+  @keyframes pulse {
+    0% { opacity: 0.8; }
+    50% { opacity: 0.4; }
+    100% { opacity: 0.8; }
+  }
+  
+  /* Station marker styling */
+  .station-dot {
+    transition: transform 0.2s ease;
+  }
+  
+  .station-dot:hover {
+    transform: scale(1.2);
+  }
