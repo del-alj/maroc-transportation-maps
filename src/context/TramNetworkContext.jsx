@@ -20,6 +20,9 @@ export function TramNetworkProvider({ children }) {
   const [stations, setStations] = useState([]);
   const [loading, setLoading] = useState(true);
 
+  // const data = await
+  // fetch('https://overpass-api.de/api/interpreter?data=[out:json][timeout:25];(node["railway"="tram_stop"]({{bbox}});rel(bn)["route"="tram"]["type"="route"]; ); out geom;>;')
+  // .then(res => res.json());
   useEffect(() => {
     fetch('/tram-data.geojson')
       .then(response => response.json())
