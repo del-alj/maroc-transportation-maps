@@ -5,7 +5,7 @@ export function autoLinkStationsToLines(features, maxDistance = 0.1) { // ~100 m
   const lines = features.filter(f => f.geometry.type === 'LineString');
   const stations = features.filter(f => f.geometry.type === 'Point');
 
-  return stations.map(station => {
+  return stations?.map(station => {
     const stationPoint = turf.point(station.geometry.coordinates);
     const lineMatches = lines.filter(line => {
       const lineString = turf.lineString(line.geometry.coordinates);
@@ -17,7 +17,7 @@ export function autoLinkStationsToLines(features, maxDistance = 0.1) { // ~100 m
       ...station,
       properties: {
         ...station.properties,
-        lines: lineMatches.map(l => l.properties.line)
+        lines: lineMatches?.map(l => l.properties.line)
       }
     };
   });

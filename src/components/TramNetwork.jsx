@@ -15,7 +15,7 @@ function TramNetwork() {
 
   return (
     <div>
-      {networkData && Object.entries(networkData?.lines).map(([lineCode, line]) => (
+      {networkData && Object.entries(networkData?.lines)?.map(([lineCode, line]) => (
         <div key={lineCode}>
           <h3>{line?.name}</h3>
           <p>Stations: {line?.stations.length}</p>

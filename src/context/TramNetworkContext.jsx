@@ -1,55 +1,52 @@
-import React, { createContext, useState, useEffect } from 'react';
-import { processGeoJSON } from '../utils/processGeoJSON';
-import { validateGeoJSON } from '../utils/validateGeoJSON';
+// TramNetworkContext.jsx
+// import { processGeoJSON } from '../utils/processGeoJSON';
+// import { processOverpassData } from '../utils/processOverpass';
 
-// Initialize with default values
-export const TramNetworkContext = createContext({
-  lines: [],
-  stations: [],
-  loading: true,
-  error: null,
-});
+// // Choose processor based on data source
+// const processor = dataSource === 'overpass' 
+//   ? processOverpassData 
+//   : processGeoJSON;
+
+
+
+  import React, { createContext, useContext, useState, useEffect } from 'react';
+import { processGeoJSON } from '../utils/processGeoJSON';
+
+// Create context
+export const TramNetworkContext = createContext();
 
 export function TramNetworkProvider({ children }) {
-  const [state, setState] = useState({
-    lines: [],
-    stations: [],
-    loading: true,
-    error: null,
-  });
+  const [lines, setLines] = useState([]);
+  const [stations, setStations] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const loadData = async () => {
-      try {
-        const response = await fetch('/tram-data.geojson');
-        if (!response.ok) throw new Error(`HTTP error! Status: ${response.status}`);
-        
-        const rawData = await response.json();
-        validateGeoJSON(rawData);
-        const { lines, stations } = processGeoJSON(rawData);
-
-        setState({
-          lines,
-          stations,
-          loading: false,
-          error: null,
-        });
-      } catch (error) {
-        setState({
-          lines: [],
-          stations: [],
-          loading: false,
-          error: error.message,
-        });
-      }
-    };
-
-    loadData();
+    fetch('/tram-data.geojson')
+      .then(response => response.json())
+      .then(rawData => {
+        const processedData = processGeoJSON(rawData);
+        setLines(processedData.lines);
+        setStations(processedData.stations);
+        setLoading(false);
+      })
+      .catch(error => {
+        console.error('Error loading data:', error);
+        setLoading(false);
+      });
   }, []);
 
   return (
-    <TramNetworkContext.Provider value={state}>
+    <TramNetworkContext.Provider value={{ lines, stations, loading }}>
       {children}
     </TramNetworkContext.Provider>
   );
+}
+
+// Custom hook for consuming context
+export function useTramNetwork() {
+  const context = useContext(TramNetworkContext);
+  if (!context) {
+    throw new Error('useTramNetwork must be used within a TramNetworkProvider');
+  }
+  return context;
 }

@@ -6,7 +6,7 @@ import { DefaultIcon } from '../utils/leafletIcons';
 L.Marker.prototype.options.icon = DefaultIcon;
 
 export default function StationMarkers({ stations }) {
-  return stations.map(station => (
+  return stations?.map(station => (
     <Marker
       key={station?.id}
       position={station?.coordinates}
@@ -14,7 +14,7 @@ export default function StationMarkers({ stations }) {
       <Popup>
         <div className="station-popup">
           <h3 className="font-bold">{station?.name}</h3>
-          <p>Lines: {station?.lines.join(', ')}</p>
+          <p>Lines: {station?.lines?.join(', ')}</p>
         </div>
       </Popup>
     </Marker>

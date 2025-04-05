@@ -9,7 +9,7 @@ const StationList = () => {
 
   return (
     <div>
-      {stations.map(station => (
+      {stations?.map(station => (
         <div key={station?.id}>{station?.name}</div>
       ))}
     </div>
