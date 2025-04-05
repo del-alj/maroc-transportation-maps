@@ -16,7 +16,7 @@ export function processGeoJSON(data) {
       lines.push({
         id: feature.properties?.line || 'T0',
         name: feature.properties?.name || 'Unnamed Line',
-        color: feature.properties?.colour || '#A16376',
+        color: feature.properties?.colour ? feature.properties?.colour : (feature.properties?.ref === 'T3' ? '#A16376' : '#6797BA'),
         coordinates
       });
     }
