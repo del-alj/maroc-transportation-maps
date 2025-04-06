@@ -38,7 +38,7 @@ const CASABLANCA_BOUNDS = [
       zoom={13}
       style={{ height: '100vh', width: '100%' }}
       minZoom={13}  // Prevent zooming out further than this
-      maxZoom={18}   // Optional: Max zoom-in level
+      maxZoom={15}   // Optional: Max zoom-in level
       maxBounds={CASABLANCA_BOUNDS} // Keep map within Casablanca
       maxBoundsViscosity={1.0} // Strict bounds enforcement
     >
@@ -50,11 +50,9 @@ const CASABLANCA_BOUNDS = [
       />
    
       <TramLines lines={lines} />
-      {/* <StationMarkers stations={stations} /> */}
       <ZoomHandler onZoom={setZoom} />
       <StationMarkers stations={stations} zoom={zoom} />
-      {/* <LineLabels lines={lines} /> */}
-      // In MapView.jsx
+  
 <LineLabels lines={lines} zoom={zoom} />
     </MapContainer>
   );

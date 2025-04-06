@@ -35,6 +35,7 @@ export default function StationMarkers({ stations, zoom }) {
         key={station.id}
         position={station.coordinates}
         icon={createCustomIcon(lineColor, size)}
+        interactive={false}
       >
         <Popup className="custom-popup">
           <div className="p-2">
