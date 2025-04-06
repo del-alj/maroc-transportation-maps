@@ -53,7 +53,9 @@ const CASABLANCA_BOUNDS = [
       {/* <StationMarkers stations={stations} /> */}
       <ZoomHandler onZoom={setZoom} />
       <StationMarkers stations={stations} zoom={zoom} />
-      <LineLabels lines={lines} />
+      {/* <LineLabels lines={lines} /> */}
+      // In MapView.jsx
+<LineLabels lines={lines} zoom={zoom} />
     </MapContainer>
   );
 }
