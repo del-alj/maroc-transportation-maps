@@ -3,6 +3,7 @@ import { MapContainer, TileLayer } from 'react-leaflet';
 import { TramNetworkContext } from '../context/TramNetworkContext';
 import TramLines from './TramLines';
 import StationMarkers from './StationMarkers';
+import LineLabels from './LineLabels';
 import 'leaflet/dist/leaflet.css'; // Essential Leaflet CSS
 // import { useTramNetwork } from '../context/TramNetworkContext';
 // src/components/MapView.jsx
@@ -21,23 +22,38 @@ function ZoomHandler({ onZoom }) {
 export default function MapView() {
   const { lines, stations, loading } = useContext(TramNetworkContext);
   const [zoom, setZoom] = useState(1);
+
+  // Casablanca bounds (SW and NE coordinates)
+const CASABLANCA_BOUNDS = [
+  [33.50, -7.70],  // Southwest bound (lower left)
+  [33.65, -7.50]   // Northeast bound (upper right)
+];
   // const { lines, stations } = useTramNetwork();
   if (loading) return <div>Loading...</div>;
   if (!lines.length) return <div>No tram lines found</div>;
 
   return (
-    <MapContainer center={[33.5731, -7.5893]} zoom={13}
-    style={{ height: '100vh', width: '100%' }} 
+       <MapContainer 
+      center={[33.5731, -7.5893]} 
+      zoom={13}
+      style={{ height: '100vh', width: '100%' }}
+      minZoom={13}  // Prevent zooming out further than this
+      maxZoom={18}   // Optional: Max zoom-in level
+      maxBounds={CASABLANCA_BOUNDS} // Keep map within Casablanca
+      maxBoundsViscosity={1.0} // Strict bounds enforcement
     >
-         <TileLayer
+      <TileLayer
         url="https://{s}.basemaps.cartocdn.com/light_nolabels/{z}/{x}/{y}{r}.png" 
-        attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+        attribution='&copy; OpenStreetMap contributors'
+        minZoom={13}  // Match container's minZoom
+        maxZoom={18}  // Match container's maxZoom
       />
+   
       <TramLines lines={lines} />
       {/* <StationMarkers stations={stations} /> */}
       <ZoomHandler onZoom={setZoom} />
       <StationMarkers stations={stations} zoom={zoom} />
-
+      <LineLabels lines={lines} />
     </MapContainer>
   );
 }
