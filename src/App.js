@@ -16,11 +16,12 @@ import React from 'react';
 // App.jsx
 import { TramNetworkProvider } from './context/TramNetworkContext';
 import MapView from './components/MapView';
-
+import ComingSoon from './components/ComingSoon';
 function App() {
   return (
     <TramNetworkProvider>
-      <MapView />
+      {/* <MapView /> */}
+      <ComingSoon/>
     </TramNetworkProvider>
   );
 }
