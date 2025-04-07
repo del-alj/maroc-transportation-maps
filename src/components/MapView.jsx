@@ -52,8 +52,7 @@ const CASABLANCA_BOUNDS = [
       <TramLines lines={lines} />
       <ZoomHandler onZoom={setZoom} />
       <StationMarkers stations={stations} zoom={zoom} />
-  
-<LineLabels lines={lines} zoom={zoom} />
+      <LineLabels lines={lines} zoom={zoom} />
     </MapContainer>
   );
 }

@@ -15,7 +15,12 @@ const createCustomIcon = (color = '#fff', size = 1) => L.divIcon({
       border-radius: 50%;
       border: 2px solid black;
       box-shadow: 0 2px 4px rgba(0,0,0,0.2);
-      transition: all 0.2s ease;
+      transform: translate(-50%, -50%);
+      // clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+      position: absolute;
+      top: 50%;
+      left: 50%;
+
     "></div>
   `
 });
@@ -37,7 +42,7 @@ export default function StationMarkers({ stations, zoom }) {
         icon={createCustomIcon(lineColor, size)}
         interactive={false}
       >
-        <Popup className="custom-popup">
+        {/* <Popup className="custom-popup">
           <div className="p-2">
             <h3 className="font-bold text-lg">{station.name}</h3>
             {station.lines?.length > 0 && (
@@ -57,7 +62,7 @@ export default function StationMarkers({ stations, zoom }) {
               </div>
             )}
           </div>
-        </Popup>
+        </Popup> */}
       </Marker>
     );
   });

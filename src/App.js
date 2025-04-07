@@ -20,8 +20,8 @@ import ComingSoon from './components/ComingSoon';
 function App() {
   return (
     <TramNetworkProvider>
-      {/* <MapView /> */}
-      <ComingSoon/>
+      <MapView />
+      {/* <ComingSoon/> */}
     </TramNetworkProvider>
   );
 }

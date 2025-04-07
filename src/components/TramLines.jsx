@@ -8,8 +8,8 @@ export default function TramLines({ lines }) {
       key={line?.id}
       positions={line?.coordinates}
       color={line?.color || '#666'}
-      weight={6}
-      opacity={0.8}
+      weight={9}
+      opacity={1}
     />
   ));
 }
