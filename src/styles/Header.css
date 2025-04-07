@@ -1,0 +1,54 @@
+.sirway-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #171717; /* SirWay red */
+    color: white;
+    padding: 12px 24px;
+    font-family: 'Inter', sans-serif;
+  }
+  
+  .left-section,
+  .center-section,
+  .right-section {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+  }
+  
+  .logo {
+    width: 42px;
+    height: 42px;
+  }
+  
+  .city-name {
+    font-size: 1.2rem;
+    font-weight: 600;
+  }
+  
+  .app-button {
+    background: white;
+    color: #d62828;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 4px;
+    font-weight: 500;
+    cursor: pointer;
+  }
+  
+  .dots {
+    font-size: 1.2rem;
+    letter-spacing: 4px;
+  }
+  
+  .search {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+  
+  .language {
+    margin-left: 20px;
+    cursor: pointer;
+  }
+  
