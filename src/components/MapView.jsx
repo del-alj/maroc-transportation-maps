@@ -1,61 +1,70 @@
 import { useContext, useState, useEffect } from 'react';
-import { 
-  MapContainer, 
-  TileLayer, 
-  Marker, 
-  Circle,
-  useMapEvents  // Add this import
-} from 'react-leaflet';
+import { MapContainer, TileLayer, useMap } from 'react-leaflet';
 import { TramNetworkContext } from '../context/TramNetworkContext';
+import { useCity } from '../context/CityContext';
 import StationMarkers from './StationMarkers';
 import LineLabels from './LineLabels';
-import L from 'leaflet';
-import 'leaflet/dist/leaflet.css';
 import TramLines from './TramLines';
 import LocationMarker from './LocationMarker';
-import { useCity } from '../context/CityContext';
-function ZoomHandler({ onZoom }) {
-  const map = useMapEvents({
-    zoomend: () => {
-      onZoom(map.getZoom());
+import 'leaflet/dist/leaflet.css';
+
+// City configurations
+const CITY_CONFIG = {
+  Casablanca: {
+    center: [33.5731, -7.5893],
+    bounds: [[33.50, -7.70], [33.65, -7.50]]
+  },
+  Rabat: {
+    center: [34.0209, -6.8416],
+    bounds: [[34.00, -6.85], [34.05, -6.75]]
+  }
+};
+
+// Component to handle map updates when city changes
+function CityUpdater() {
+  const { currentCity } = useCity();
+  const map = useMap();
+
+  // Update map view when city changes
+  useEffect(() => {
+    const config = CITY_CONFIG[currentCity];
+    if (config) {
+      map.flyTo(config.center, 14);
+      map.setMaxBounds(config.bounds);
     }
-  });
+  }, [currentCity, map]);
+
   return null;
 }
 
-// Custom GPS location icon
-
-
-// Location marker component
-
-// Main component
 export default function MapView() {
   const { currentCity } = useCity();
   const { lines, stations, loading } = useContext(TramNetworkContext);
   const [zoom, setZoom] = useState(13);
 
-  const SALE_BOUNDS = [
-    [34.02, -6.86],
-    [34.06, -6.80]
-  ];
+  // Get current city configuration or fallback to Casa
+  const cityConfig = CITY_CONFIG[currentCity] || CITY_CONFIG.Casablanca;
 
   if (loading) return <div>Loading...</div>;
   if (!lines.length) return <div>No tram lines found</div>;
 
   return (
     <MapContainer 
-      center={[34.04, -6.83]} // Salé center coordinates
+      center={cityConfig.center}
       zoom={14}
       style={{ height: '100vh', width: '100%' }}
       minZoom={13}
       maxZoom={18}
-      // maxBounds={SALE_BOUNDS}
+      maxBounds={cityConfig.bounds}
       maxBoundsViscosity={1.0}
     >
       <TileLayer
-        url="https://{s}.basemaps.cartocdn.com/light_nolabels/{z}/{x}/{y}{r}.png" 
+        url="https://{s}.basemaps.cartocdn.com/light_nolabels/{z}/{x/{y}{r}.png" 
         attribution='&copy; OpenStreetMap contributors'
       />
+      {/* City-specific updates */}
+      <CityUpdater />
+      {/* Map components */}
       <TramLines lines={lines} />
       <LocationMarker />
       {/* <ZoomHandler onZoom={setZoom} /> */}

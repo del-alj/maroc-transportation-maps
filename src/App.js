@@ -14,15 +14,24 @@ import React from 'react';
 // }
 
 // App.jsx
+import { CityProvider } from './context/CityContext';
 import { TramNetworkProvider } from './context/TramNetworkContext';
 import MapView from './components/MapView';
 import ComingSoon from './components/ComingSoon';
+import Header from './components/Header'; // Import the new component
 function App() {
   return (
+    <CityProvider>
     <TramNetworkProvider>
-      {/* <MapView /> */}
-      <ComingSoon/>
+    <div className="flex flex-col h-screen">
+        {/* <Header /> Use the header component */}
+        <main className="flex-1 relative">
+          {/* <MapView /> */}
+          <ComingSoon/>
+        </main>
+      </div>
     </TramNetworkProvider>
+    </CityProvider>
   );
 }
 
