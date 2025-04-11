@@ -90,3 +90,91 @@
 .popup-button.directions:hover {
   background: #444;
 }
+
+/* Glassmorphic Popup Styling */
+.glass-popup .leaflet-popup-content-wrapper {
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(8px);
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  width: 320px;
+}
+
+.diagram-popup {
+  padding: 1rem;
+}
+
+.line-section {
+  margin-bottom: 1.5rem;
+}
+
+.line-header {
+  font-weight: 600;
+  color: #2c3e50;
+  padding: 0.5rem 0;
+  border-bottom: 2px solid #3498db;
+  margin-bottom: 0.5rem;
+}
+
+.station-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.station-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5rem 0;
+  border-bottom: 1px solid #ecf0f1;
+}
+
+.station-name {
+  color: #2c3e50;
+  font-weight: 500;
+}
+
+.station-time {
+  color: #7f8c8d;
+  font-size: 0.9em;
+}
+
+.timetable-footer {
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 2px solid #3498db;
+}
+
+.operation-hours {
+  display: flex;
+  justify-content: space-between;
+  color: #3498db;
+  font-size: 0.9em;
+}
+
+.action-buttons {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.5rem;
+  margin-top: 1rem;
+}
+
+.route-button, .schedule-button {
+  padding: 0.6rem;
+  border: none;
+  border-radius: 6px;
+  background: rgba(52, 152, 219, 0.1);
+  color: #3498db;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.route-button:hover, .schedule-button:hover {
+  background: rgba(52, 152, 219, 0.2);
+  transform: translateY(-1px);
+}
