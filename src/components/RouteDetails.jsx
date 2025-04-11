@@ -1,10 +1,14 @@
-export default function RouteDetails({ start, end }) {
-    return (
-      <div className="route-details">
-        <h3>Route Details</h3>
-        <p>From: {start}</p>
-        <p>To: {end}</p>
-        {/* Add route calculation logic here */}
+// components/RouteDetails.jsx (example)
+import '../styles/Panels.css'
+
+export default function RouteDetails({ station, onClose }) {
+  return (
+    <div className="route-panel">
+      <div className="panel-header">
+        <h2>Route from {station.name}</h2>
+        <button className="close-button" onClick={onClose}>×</button>
       </div>
-    );
-  }
+      {/* Your existing route details content */}
+    </div>
+  );
+}
