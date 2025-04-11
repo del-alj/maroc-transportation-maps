@@ -1,0 +1,92 @@
+
+.station-marker {
+  transition: all 0.3s ease;
+}
+
+.station-dot {
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.9);
+  border: 2px solid #888;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.station-dot .inner-dot {
+  width: 50%;
+  height: 50%;
+  background: #fff;
+  border-radius: 50%;
+  transition: all 0.3s ease;
+  border: 1px solid #eee;
+}
+
+.station-dot:hover {
+  transform: scale(1.8);
+  /* border-color: #333; */
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  z-index: 1000;
+}
+
+.station-dot:hover .inner-dot {
+  background: #f8f9fa;
+  border-color: #ddd;
+}
+
+/* Popup Styling */
+.custom-popup .leaflet-popup-content-wrapper {
+  border-radius: 8px;
+  padding: 0;
+  border: 1px solid #eee;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  background: #fff;
+}
+
+.popup-content {
+  padding: 1rem;
+}
+
+.station-name {
+  margin: 0 0 1rem 0;
+  font-size: 1.1rem;
+  color: #333;
+  font-weight: 500;
+}
+
+.button-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.popup-button {
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: #f8f9fa;
+  color: #444;
+}
+
+.popup-button:hover {
+  background: #e9ecef;
+  transform: translateY(-1px);
+}
+
+.popup-button.directions {
+  background: #333;
+  color: white;
+}
+
+.popup-button.directions:hover {
+  background: #444;
+}
