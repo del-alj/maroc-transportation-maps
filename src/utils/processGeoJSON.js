@@ -5,6 +5,9 @@ export function processGeoJSON(data) {
     'T1': '#F38230',
     'T2': '#0078BF',
     'T3': '#A16376',
+    'T4': '#6797BA',
+    '1': '#F955A6', //L1 
+    '2': '#9E6DB2' //L2
   };
 
   // First pass: Process all lines to create color reference
@@ -26,6 +29,7 @@ export function processGeoJSON(data) {
           color: feature.properties.colour || LINE_COLORS[lineId] || '#6797BA',
           coordinates
         });
+        console.log(feature.properties.name, 'this is lin', lineId)
       }
     }
   });

@@ -24,10 +24,10 @@ function App() {
     <CityProvider>
     <TramNetworkProvider>
     <div className="flex flex-col h-screen">
-        {/* <Header /> Use the header component */}
+        <Header /> {/* Use the header component */}
         <main className="flex-1 relative">
-          {/* <MapView /> */}
-          <ComingSoon/>
+          <MapView />
+          {/* <ComingSoon/> */}
         </main>
       </div>
     </TramNetworkProvider>

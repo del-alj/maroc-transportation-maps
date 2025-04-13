@@ -51,23 +51,23 @@ export default function MapView() {
   return (
     <MapContainer 
       center={cityConfig.center}
-      zoom={14}
+      zoom={15}
       style={{ height: '100vh', width: '100%' }}
       minZoom={13}
-      maxZoom={18}
+      maxZoom={15}
       maxBounds={cityConfig.bounds}
       maxBoundsViscosity={1.0}
     >
       <TileLayer
-        url="https://{s}.basemaps.cartocdn.com/light_nolabels/{z}/{x/{y}{r}.png" 
+        url="https://{s}.basemaps.cartocdn.com/light_nolabels/{z}/{x}/{y}{r}.png" 
         attribution='&copy; OpenStreetMap contributors'
       />
       {/* City-specific updates */}
-      <CityUpdater />
       {/* Map components */}
+      {/* <ZoomHandler onZoom={setZoom} /> */}
+      <CityUpdater />
       <TramLines lines={lines} />
       <LocationMarker />
-      {/* <ZoomHandler onZoom={setZoom} /> */}
       <StationMarkers stations={stations} zoom={zoom} />
       <LineLabels lines={lines} zoom={zoom} />
 

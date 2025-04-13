@@ -3,7 +3,7 @@ import { useState } from 'react';
 import L from 'leaflet';
 import { Marker, Popup } from 'react-leaflet';
 import RouteDetails from './RouteDetails';
-import RoutePanel from './RoutePanel';
+import RoutePlanner from './RoutePlanner';
 import '../styles/StationMarkers.css';
 
 const createCustomIcon = (isHovered) => L.divIcon({
@@ -21,6 +21,7 @@ export default function StationMarkers({ stations }) {
   const [activePanel, setActivePanel] = useState(null);
   const [selectedStation, setSelectedStation] = useState(null);
 
+  const [showRoutePlanner, setShowRoutePlanner] = useState(false);
   const handlePanelClose = () => {
     setActivePanel(null);
     setSelectedStation(null);
@@ -76,12 +77,18 @@ export default function StationMarkers({ stations }) {
         />
       )}
 
-      {activePanel === 'schedule' && selectedStation && (
-        <RoutePanel
+       {activePanel === 'schedule' && selectedStation && (
+        <RoutePlanner
           station={selectedStation}
           onClose={handlePanelClose}
         />
-      )}
+      )} 
+        {/* {showRoutePlanner && (
+        <RoutePlanner 
+          onClose={() => setShowRoutePlanner(false)}
+          onRouteCalculate={(data) => console.log('Route data:', data)}
+        />
+      )} */}
     </>
   );
 }

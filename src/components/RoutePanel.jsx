@@ -1,12 +1,21 @@
-// components/RoutePanel.jsx (example)
-export default function RoutePanel({ station, onClose }) {
+import { useState } from 'react';
+import RoutePlanner from './RoutePlanner';
+
+function App() {
+  const [showRoutePlanner, setShowRoutePlanner] = useState(false);
+
   return (
-    <div className="schedule-panel">
-      <div className="panel-header">
-        <h2>{station.name} Schedule</h2>
-        <button className="close-button" onClick={onClose}>×</button>
-      </div>
-      {/* Your existing schedule content */}
+    <div>
+      <button onClick={() => setShowRoutePlanner(true)}>
+        Plan Route
+      </button>
+      
+      {showRoutePlanner && (
+        <RoutePlanner 
+          onClose={() => setShowRoutePlanner(false)}
+          onRouteCalculate={(data) => console.log('Route data:', data)}
+        />
+      )}
     </div>
   );
 }
